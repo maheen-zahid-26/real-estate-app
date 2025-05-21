@@ -1,0 +1,10 @@
+<div class="p-6 bg-gray-100 min-h-screen">
+  <h2 class="text-2xl font-bold mb-4">Available Properties</h2>
+
+  <div *ngFor="let property of properties" class="mb-4 p-4 bg-white rounded shadow">
+    <h3 class="text-lg font-semibold">{{ property.title }}</h3>
+    <p>Location: {{ property.location }}</p>
+    <p>Price: {{ property.price }}</p>
+    <button (click)="viewDetails(property.id)" class="mt-2 text-blue-600 underline">View Details</button>
+  </div>
+</div>

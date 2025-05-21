@@ -1,0 +1,27 @@
+<div *ngIf="property" class="p-6 max-w-4xl mx-auto">
+  <h2 class="text-3xl font-bold mb-4">{{ property.title }}</h2>
+  <img [src]="property.imageUrl" class="w-full h-64 object-cover rounded mb-4">
+
+  <p class="text-gray-700"><strong>Price:</strong> {{ property.price }}</p>
+  <p><strong>Area:</strong> {{ property.area }}</p>
+  <p><strong>Rooms:</strong> {{ property.rooms }}</p>
+  <p><strong>Address:</strong> {{ property.address.governorate }}, {{ property.address.district }}, {{ property.address.street }}</p>
+
+  <div class="mt-4">
+    <p><strong>Features:</strong> {{ property.features.join(', ') }}</p>
+    <p><strong>Amenities:</strong> {{ property.amenities.join(', ') }}</p>
+    <p><strong>Nearby:</strong> {{ property.nearby.join(', ') }}</p>
+  </div>
+
+  <div class="mt-6">
+    <h3 class="text-xl font-semibold mb-2">Photo Gallery</h3>
+    <div class="grid grid-cols-2 gap-4">
+      <img *ngFor="let img of property.gallery" [src]="img" class="w-full h-40 object-cover rounded">
+    </div>
+  </div>
+
+  <div class="mt-6">
+    <h3 class="text-xl font-semibold mb-2">Video Tour</h3>
+    <video [src]="property.videoUrl" controls class="w-full rounded shadow"></video>
+  </div>
+</div>

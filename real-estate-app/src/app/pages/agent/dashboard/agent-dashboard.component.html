@@ -1,0 +1,46 @@
+<div class="p-6">
+  <h1 class="text-2xl font-bold mb-4">Agent Dashboard</h1>
+
+  <form (ngSubmit)="addProperty()" class="space-y-4">
+    <input
+      type="text"
+      [(ngModel)]="title"
+      name="title"
+      placeholder="Property Title"
+      class="border p-2 w-full"
+    />
+
+    <input
+      type="text"
+      [(ngModel)]="location"
+      name="location"
+      placeholder="Location"
+      class="border p-2 w-full"
+    />
+
+    <input
+      type="text"
+      [(ngModel)]="price"
+      name="price"
+      placeholder="Price"
+      class="border p-2 w-full"
+    />
+
+    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">
+      Add Property
+    </button>
+  </form>
+
+  <div class="mt-6">
+    <h2 class="text-xl font-semibold mb-2">Your Properties</h2>
+    <ul>
+      <li *ngFor="let property of properties" class="border p-2 mb-2">
+        {{ property.title }} - {{ property.location }} - ${{ property.price }}
+      </li>
+    </ul>
+  </div>
+
+  <button (click)="logout()" class="mt-4 bg-red-500 text-white px-4 py-2 rounded">
+    Logout
+  </button>
+</div>
