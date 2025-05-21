@@ -1,38 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { PropertyService } from '../../../services/property.service';
+import { Property } from '../../../models/property.model';
 
 @Component({
   selector: 'app-agent-dashboard',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule],
   templateUrl: './agent-dashboard.component.html',
 })
 export class AgentDashboardComponent implements OnInit {
-  properties: { title: string; location: string; price: string }[] = [];
-  title: string = '';
-  location: string = '';
-  price: string = '';
+  properties: Property[] = [];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private propertyService: PropertyService) {}
 
   ngOnInit(): void {
     const loggedIn = localStorage.getItem('agentLoggedIn');
     if (!loggedIn) this.router.navigate(['/agent/login']);
+    else {
+      this.propertyService.properties$.subscribe((props) => {
+        this.properties = props;
+      });
+    }
   }
 
-  addProperty() {
-    if (this.title && this.location && this.price) {
-      this.properties.push({
-        title: this.title,
-        location: this.location,
-        price: this.price,
-      });
-      this.title = '';
-      this.location = '';
-      this.price = '';
-    }
+  navigateToAddProperty() {
+    this.router.navigate(['/agent/addproperty']);
   }
 
   logout() {

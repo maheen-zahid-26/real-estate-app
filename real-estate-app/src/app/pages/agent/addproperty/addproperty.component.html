@@ -1,0 +1,90 @@
+<div class="p-6 max-w-4xl mx-auto">
+  <h2 class="text-2xl font-bold mb-4">Add New Property</h2>
+
+  <form (ngSubmit)="addProperty()" class="grid grid-cols-2 gap-4">
+    <!-- Title -->
+    <div class="col-span-1">
+      <label class="block font-medium mb-1">Title</label>
+      <input class="p-2 border w-full" [(ngModel)]="title" name="title" required>
+    </div>
+
+    <!-- Location -->
+    <div class="col-span-1">
+      <label class="block font-medium mb-1">Location</label>
+      <input class="p-2 border w-full" [(ngModel)]="location" name="location" required>
+    </div>
+
+    <!-- Price -->
+    <div class="col-span-1">
+      <label class="block font-medium mb-1">Price</label>
+      <input class="p-2 border w-full" [(ngModel)]="price" name="price" required>
+    </div>
+
+    <!-- Area -->
+    <div class="col-span-1">
+      <label class="block font-medium mb-1">Area (e.g. 1500 sq ft)</label>
+      <input class="p-2 border w-full" [(ngModel)]="area" name="area">
+    </div>
+
+    <!-- Rooms -->
+    <div class="col-span-1">
+      <label class="block font-medium mb-1">Number of Rooms</label>
+      <input class="p-2 border w-full" type="number" [(ngModel)]="rooms" name="rooms">
+    </div>
+
+    <!-- Address Fields -->
+    <div class="col-span-1">
+      <label class="block font-medium mb-1">Governorate</label>
+      <input class="p-2 border w-full" [(ngModel)]="governorate" name="governorate">
+    </div>
+
+    <div class="col-span-1">
+      <label class="block font-medium mb-1">District</label>
+      <input class="p-2 border w-full" [(ngModel)]="district" name="district">
+    </div>
+
+    <div class="col-span-1">
+      <label class="block font-medium mb-1">Street</label>
+      <input class="p-2 border w-full" [(ngModel)]="street" name="street">
+    </div>
+
+    <!-- Media -->
+    <div class="col-span-1">
+      <label class="block font-medium mb-1">Image URL</label>
+      <input class="p-2 border w-full" [(ngModel)]="imageUrl" name="imageUrl">
+    </div>
+
+    <div class="col-span-1">
+      <label class="block font-medium mb-1">Gallery URLs (comma separated)</label>
+      <input class="p-2 border w-full" [(ngModel)]="gallery" name="gallery">
+    </div>
+
+    <div class="col-span-1">
+      <label class="block font-medium mb-1">Video URL</label>
+      <input class="p-2 border w-full" [(ngModel)]="videoUrl" name="videoUrl">
+    </div>
+
+    <!-- Features & Amenities -->
+    <div class="col-span-1">
+      <label class="block font-medium mb-1">Features (comma separated)</label>
+      <input class="p-2 border w-full" [(ngModel)]="features" name="features">
+    </div>
+
+    <div class="col-span-1">
+      <label class="block font-medium mb-1">Amenities (comma separated)</label>
+      <input class="p-2 border w-full" [(ngModel)]="amenities" name="amenities">
+    </div>
+
+    <div class="col-span-2">
+      <label class="block font-medium mb-1">Nearby Places (comma separated)</label>
+      <input class="p-2 border w-full" [(ngModel)]="nearby" name="nearby">
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="col-span-2 bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
+      Add Property
+    </button>
+  </form>
+
+  
+</div>
