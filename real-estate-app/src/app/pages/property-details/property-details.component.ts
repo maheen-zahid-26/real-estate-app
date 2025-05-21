@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { PROPERTIES } from '../../data/properties';
+import { PropertyService } from '../../services/property.service';
 import { Property } from '../../models/property.model';
 
 @Component({
@@ -13,10 +13,14 @@ import { Property } from '../../models/property.model';
 export class PropertyDetailsComponent implements OnInit {
   property!: Property;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private propertyService: PropertyService
+  ) {}
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.property = PROPERTIES.find(p => p.id === id)!;
+    const properties = this.propertyService.getProperties();
+    this.property = properties.find(p => p.id === id)!;
   }
 }

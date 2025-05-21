@@ -3,22 +3,38 @@ import { BehaviorSubject } from 'rxjs';
 import { Property } from '../models/property.model';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class PropertyService {
-  private propertiesSource = new BehaviorSubject<Property[]>([]);
-  properties$ = this.propertiesSource.asObservable();
+  private _properties = new BehaviorSubject<Property[]>(this.getProperties());
+  public properties$ = this._properties.asObservable();
 
-  constructor() {
-    // Initialize with some default properties if you want (optional)
-    // this.propertiesSource.next(PROPERTIES);
-  }
+  constructor() {}
 
   getProperties(): Property[] {
-    return this.propertiesSource.value;
+    const data = localStorage.getItem('properties');
+    return data ? JSON.parse(data) : [];
   }
 
-  addProperty(property: Property) {
-    this.propertiesSource.next([...this.propertiesSource.value, property]);
+  loadFromLocalStorage(): void {
+    const props = this.getProperties();
+    this._properties.next(props); 
+  }
+
+  addProperty(property: Property): void {
+    const current = this.getProperties();
+    const updated = [...current, property];
+    localStorage.setItem('properties', JSON.stringify(updated));
+    this._properties.next(updated);
+  }
+
+  deleteProperty(id: number): void {
+    const updated = this.getProperties().filter(p => p.id !== id);
+    localStorage.setItem('properties', JSON.stringify(updated));
+    this._properties.next(updated);
+  }
+
+  getPropertyById(id: number): Property | undefined {
+    return this.getProperties().find(p => p.id === id);
   }
 }
